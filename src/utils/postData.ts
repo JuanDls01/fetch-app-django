@@ -18,11 +18,18 @@ export type User = {
   is_staff: string;
 };
 
+type ResponsePostDataType = {
+  count: number | null;
+  next: number | null;
+  previous: number | null;
+  results: User[];
+};
+
 const postData = async (
   url: string,
   token: string,
   data?: Record<string, unknown>
-): Promise<Array<User>> => {
+): Promise<ResponsePostDataType> => {
   const response = await fetch(url, {
     method: "GET",
     headers: {
